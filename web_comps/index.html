@@ -10,6 +10,7 @@
 			}
 		</style>
 		<script src="tooltip.js"></script>
+		<script src="confirm-link.js"></script>
 	</head>
 	<body>
 		<p>
@@ -19,6 +20,7 @@
 			aceba av havay
 		</p>
 		<uc-tooltip></uc-tooltip>
-		<div>This will not reflect the Shadow DOM styles...</div>
+		<div>This does not get global styles.</div>
+		<a is="uc-confirm-link" href="https://www.google.com">Google</a>
 	</body>
 </html>
