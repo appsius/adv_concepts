@@ -12,13 +12,15 @@
 		<script src="tooltip.js"></script>
 	</head>
 	<body>
-		<template id="tooltip-template"><span> (?)</span></template>
+		<template id="tooltip-template"
+			><slot>Some default</slot><span> (?)</span></template
+		>
 		<p>
 			<uc-tooltip text="Web Components is a set of standards."
 				>Web Components</uc-tooltip
 			>
 			aceba av havay
 		</p>
-		<uc-tooltip>Temaşa Ehli...</uc-tooltip>
+		<uc-tooltip></uc-tooltip>
 	</body>
 </html>
