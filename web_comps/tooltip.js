@@ -17,29 +17,33 @@ class Tooltip extends HTMLElement {
 			padding: 0.15rem;
 			border-radius: 3px;
 			box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.26);
-        }
-
-        :host(.important) {
-			 background: var(--color-primary, #ccc);
-			 padding: 0.15px;
 		  }
 		  
-		  :host-context(p) {
-			  font-weight: bold;
-		  }
+			:host {
+				position: relative;
+			}
 
-        ::slotted(.highlight) {
-          border-bottom: 2px dotted red;
-        }
+			:host(.important) {
+				background: var(--color-primary, #ccc);
+				padding: 0.15px;
+			}
+			
+			:host-context(p) {
+				font-weight: bold;
+			}
 
-        .icon {
-          background: black;
-          color: white;
-          padding: 0.1rem 0.4rem;
-          text-align: center;
-          border-radius: 50%;
-        }
-      </style>
+			::slotted(.highlight) {
+				border-bottom: 2px dotted red;
+			}
+
+			.icon {
+				background: black;
+				color: white;
+				padding: 0.1rem 0.4rem;
+				text-align: center;
+				border-radius: 50%;
+			}
+		</style>
       <slot>Some default</slot>
       <span class="icon">?</span>
     `;
@@ -59,7 +63,6 @@ class Tooltip extends HTMLElement {
 			'mouseleave',
 			this._hideTooltip.bind(this)
 		);
-		this.style.position = 'relative';
 		this._render();
 	}
 
