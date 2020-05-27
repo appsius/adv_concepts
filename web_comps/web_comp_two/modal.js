@@ -1,6 +1,7 @@
 class Modal extends HTMLElement {
 	constructor() {
 		super();
+		this.isOpen = false;
 		this.attachShadow({ mode: 'open' });
 		this.shadowRoot.innerHTML = `
          <style>
@@ -30,7 +31,7 @@ class Modal extends HTMLElement {
                opacity: 0;
                pointer-events: none;
             }
-            :host([opened]) #backdrop, 
+            :host([opened]) #backdrop,
             :host([opened]) #modal
                {
                   opacity: 1;
@@ -75,21 +76,29 @@ class Modal extends HTMLElement {
       `;
 	}
 
-	// attributeChangedCallback(name, oldValue, newValue) {
-	// 	if (name === 'opened') {
-	// 		if (this.hasAttribute('opened')) {
-	// 			this.shadowRoot.querySelector('#backdrop').style.opacity = 1;
-	// 			this.shadowRoot.querySelector('#backdrop').style.pointerEvents =
-	// 				'all';
-	// 			this.shadowRoot.querySelector('#modal').style.opacity = 1;
-	// 			this.shadowRoot.querySelector('#modal').style.pointerEvents = 'all';
-	// 		}
-	// 	}
-	// }
+	attributeChangedCallback(name, oldValue, newValue) {
+		if (name === 'opened') {
+			if (this.hasAttribute('opened')) {
+				this.isOpen = true;
+				// this.shadowRoot.querySelector('#backdrop').style.opacity = 1;
+				// this.shadowRoot.querySelector('#backdrop').style.pointerEvents =
+				// 	'all';
+				// this.shadowRoot.querySelector('#modal').style.opacity = 1;
+				// this.shadowRoot.querySelector('#modal').style.pointerEvents = 'all';
+			}
+		} else {
+			this.isOpen = false;
+		}
+	}
 
-	// static get observedAttributes() {
-	// 	return ['opened'];
-	// }
+	static get observedAttributes() {
+		return ['opened'];
+	}
+
+	open() {
+		this.setAttribute('opened', '');
+		this.isOpen = true;
+	}
 }
 
 customElements.define('uc-modal', Modal);
